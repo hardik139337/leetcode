@@ -1,42 +1,37 @@
 package main
 
 import (
+	"crypto/sha256"
+	"encoding/hex"
 	"fmt"
-	"slices"
-	"sort"
 )
 
-func findArr(arr []int, k int) (result []int) {
+type MyStruct struct {
+	Field1 string
+	Field2 int
+}
 
-	heap := make([]int, k)
-	fmt.Printf("heap: %v\n", heap)
+func calculateHash(s any) string {
+	// Convert the struct to a byte slice
+	data := []byte(fmt.Sprintf("%+v", s))
 
-	for i := 0; i < k; i++ {
-		heap = append(heap, 0)
-	}
-	count := map[int]int{}
+	// Calculate the SHA-256 hash of the byte slice
+	hash := sha256.Sum256(data)
 
-	for _, v := range arr {
-		count[v]++
-	}
+	// Convert the hash to a hexadecimal string
+	hashString := hex.EncodeToString(hash[:])
 
-	for i, v := range count {
-		if v > heap[0] {
-			heap[0] = i
-			sort.Slice(heap, func(i, j int) bool {
-				return count[heap[i]] < count[heap[j]]
-			})
-			slices.Sort(heap)
-		}
-	}
-
-	return heap
+	return hashString
 }
 
 func main() {
-	// k := 5
-	// heap := make([]int, k)
-	// fmt.Printf("heap: %v\n", heap[0])
-	// return
+	myStruct := MyStruct{
+		Field1: "Hello",
+		Field2: 42,
+	}
 
+	// Calculate the hash of the struct
+	hash := calculateHash(myStruct)
+
+	fmt.Println("Hash of the struct:", hash)
 }

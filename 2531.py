@@ -11,7 +11,7 @@ class Solution:
             return False
         oneCount = oneCount / 2
 
-        # @functools.cache
+        @functools.cache
         def dfs(i, j, k):
             if i >= alen or j >= blen:
                 return False
@@ -25,5 +25,11 @@ class Solution:
         return dfs(0, 0, 0)
 
 
-r = Solution().isThereAPath([[0, 1, 0, 0], [0, 1, 0, 0], [1, 0, 1, 0]])
+r = Solution().isThereAPath(
+    [
+        [0, 1, 0, 0],
+        [0, 1, 0, 0],
+        [1, 0, 1, 0],
+    ]
+)
 print(r)
