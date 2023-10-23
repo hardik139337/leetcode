@@ -9,5 +9,3 @@ class Solution:
         for i in range(len(stones) - 2):
             minDistance = max(stones[i + 2] - stones[i], minDistance)
         return minDistance
-
-
