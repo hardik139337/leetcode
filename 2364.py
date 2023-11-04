@@ -6,15 +6,12 @@ import collections
 
 class Solution:
     def countBadPairs(self, nums: List[int]) -> int:
-        count = collections.defaultdict(0)
+        count = collections.Counter(value - index for index, value in enumerate(nums))
 
-        for i in range(len(nums)):
-            count[nums[i] - i] += 1
-        total = self.new_method(len(nums))
-        for i in count:
-            total -= self.new_method(count[i])
+        lenNums = len(nums)
+
+        total = lenNums * (lenNums - 1) / 2
+        for i in count.values():
+            total -= i * (i - 1) / 2
 
         return total
-
-    def new_method(self, nums):
-        return nums * (nums - 1) / 2
