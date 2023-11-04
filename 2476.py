@@ -38,7 +38,10 @@ class Solution:
     def closestNodes(
         self, root: Optional[TreeNode], queries: List[int]
     ) -> List[List[int]]:
-        # print(root)
+        def find(root: Optional[TreeNode], val: int):
+            return []
+
+        find(root=None, val=0)
         return []
 
 
