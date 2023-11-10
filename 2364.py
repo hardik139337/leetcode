@@ -13,5 +13,5 @@ class Solution:
         total = lenNums * (lenNums - 1) / 2
         for i in count.values():
             total -= i * (i - 1) / 2
-
+        print(collections.Counter)
         return total
