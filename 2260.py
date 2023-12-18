@@ -2,11 +2,11 @@ from typing import List
 
 
 class Solution:
-    def minimumCardPickup(self, cards: List[int]) -> int:
+    def minimumCardPickup(self, c: List[int]) -> int:
         r = float("inf")
-        m = dict()
+        m = {}
 
-        for i, v in enumerate(cards):
+        for i, v in enumerate(c):
             if v in m:
                 r = min(r, i - m[v])
             m[v] = i
