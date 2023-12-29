@@ -3,31 +3,17 @@ from typing import List
 
 class Solution:
     def maxScoreIndices(self, nums: List[int]) -> List[int]:
-        zeroCount = 0
-
-        for i in nums:
-            if i == 0:
-                zeroCount += 1
-
-        oneCount = len(nums) - zeroCount
-        tzeroCount = 0
-        toneCount = 0
-        maxR = 0
-        maxRArr = []
+        currentCount = sum(nums)
+        maxCount = currentCount
+        output = [0]
         for i in range(len(nums)):
             if nums[i] == 0:
-                tzeroCount += 1
+                currentCount += 1
+                if currentCount > maxCount:
+                    maxCount = currentCount
+                    output = [i + 1]
+                elif currentCount == maxCount:
+                    output.append(i + 1)
             else:
-                toneCount += 1
-            tsum = toneCount + oneCount - toneCount
-
-            if tsum == maxR:
-                maxRArr.append(i)
-            if tsum > maxR:
-                maxRArr = [i]
-
-        return maxRArr
-
-
-r = Solution().maxScoreIndices([0, 0, 1, 0])
-print(r)
+                currentCount -= 1
+        return output
